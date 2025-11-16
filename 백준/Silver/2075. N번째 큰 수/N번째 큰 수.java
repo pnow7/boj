@@ -5,7 +5,7 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+		PriorityQueue<Integer> minHeap = new PriorityQueue<>();
 		
 		int N = Integer.parseInt(br.readLine());
 		
@@ -13,17 +13,18 @@ public class Main {
 			StringTokenizer st = new StringTokenizer(br.readLine());
 			for (int j = 0; j < N; j++) {
 				int num = Integer.parseInt(st.nextToken());
-				maxHeap.add(num);
+				
+				if (minHeap.size() < N) {
+					minHeap.add(num);
+				} else if (num > minHeap.peek()) {
+					minHeap.poll();
+					minHeap.add(num);
+				}
 			}
 		}
 		
-		while (N > 1) {
-			maxHeap.poll();
-			N--;
-		}
-		
-		System.out.println(maxHeap.poll());
+		System.out.println(minHeap.poll());
 		br.close();
 	}
-	
+
 }
