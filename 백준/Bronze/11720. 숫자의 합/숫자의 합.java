@@ -1,16 +1,19 @@
-import java.util.Scanner;
-public class Main {
+import java.io.*;
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		
-		int N = sc.nextInt(); 
-		String Snum = sc.next(); 
-		char[] Cnum = Snum.toCharArray(); 
-		int sum = 0;
-		for(int i=0; i<N; i++) {
-			sum = sum + Cnum[i]-48; 
-		}
-		System.out.println(sum);
-	}
+public class Main {
+    
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        int n = Integer.parseInt(br.readLine());
+        String num = br.readLine();
+        
+        int result = 0;
+        for (int i = 0; i < n; i++) {
+            result += num.charAt(i) - '0';
+        }
+        
+        System.out.println(result);
+        br.close();
+    }
 }
