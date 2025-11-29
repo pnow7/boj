@@ -1,31 +1,35 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.*;
 
-public class Main { 
-
-	public static void main(String[] args) throws IOException{
+public class Main {
+	
+	private static int[] alpha = new int[26];
+	private static boolean[] visited = new boolean[26];
+	
+	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
 		
-		int[] en = new int[26];
+		String word = br.readLine();
+		Arrays.fill(alpha, -1);
 		
-		for(int i = 0; i < en.length; i++) {
-			en[i] = -1; 
-		}
-		
-		String st = br.readLine();
-		
-		for(int i = 0; i < st.length(); i++) {
-			char ch = st.charAt(i); 
+		for (int i = 0; i < word.length(); i++) {
+			int charIndex =  word.charAt(i) - 'a';
 
-			if(en[ch-'a'] == -1) {
-				en[ch-'a'] = i;
+			if (visited[charIndex]) {
+				continue;
+			} else {
+				alpha[charIndex] = i;
+				visited[charIndex] = true;
 			}
 		}
 		
-		for(int val : en) {
-			System.out.print(val + " ");
+		for (int i = 0; i < alpha.length; i++) {
+			sb.append(alpha[i]).append(" ");
 		}
+		
+		System.out.println(sb.toString());
+		br.close();
 	}
-
+	
 }
