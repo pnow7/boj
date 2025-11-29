@@ -1,25 +1,31 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.BufferedWriter;
-import java.io.OutputStreamWriter;
-import java.io.IOException;
-import java.util.HashSet; 
+import java.io.*;
+import java.util.*;
 
-public class Main { 
-
-	public static void main(String[] args) throws IOException{
+public class Main {
+	
+	private static int[] check = new int[42];
+	
+	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		HashSet<Integer> hash = new HashSet<Integer>();
 		
-		for(int i = 0; i < 10; i++) {
-			hash.add(Integer.parseInt(br.readLine())%42);
+		Arrays.fill(check, -1);
+		
+		for (int i = 0; i < 10; i++) {
+			int num = Integer.parseInt(br.readLine());
+			
+			check[num % 42] = num % 42;
 		}
-		bw.write(hash.size()+"");
+		
+		int count = 0;
+		
+		for (int i = 0; i < check.length; i++) {
+			if (check[i] != -1) {
+				count++;
+			}
+		}
+		
+		System.out.println(count);
 		br.close();
-		bw.flush();
-		bw.close();
-
 	}
-
+	
 }
