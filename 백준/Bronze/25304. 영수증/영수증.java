@@ -1,26 +1,24 @@
-import java.util.Scanner;
-public class Main { 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int total = sc.nextInt();
-		int N = sc.nextInt();
-		
-		int sum = 0;
-		
-		for(int i = 0; i < N; i++) {
-			int money = sc.nextInt();
-			int ea = sc.nextInt();
-			sum = sum + (money * ea);
-		}
-		
-		if(total == sum) {
-			System.out.println("Yes");
-		}
-		else {
-			System.out.println("No");
-		}
+import java.io.*;
+import java.util.*;
 
-
-	}
-
+public class Main {
+    
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+        int x = Integer.parseInt(br.readLine());
+        int n = Integer.parseInt(br.readLine());
+        
+        int total = 0;
+        for (int i = 0; i < n; i++) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            
+            total += a * b;
+        }
+        
+        System.out.println((x == total) ? "Yes" : "No");
+        br.close();
+    }
 }
