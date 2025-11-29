@@ -1,39 +1,36 @@
 import java.io.*;
 import java.util.*;
+
 public class Main {
-    
-	public static void main(String[] args) throws IOException{
+
+	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-		StringTokenizer st; 
 		StringBuilder sb = new StringBuilder();
 		
-		int N = Integer.parseInt(br.readLine());
-		int num1, num2;
-		int result = 0;
+		int t = Integer.parseInt(br.readLine());
 		
-		for(int i = 0; i < N; i++) {
-			st = new StringTokenizer(br.readLine());
-			num1 = Integer.parseInt(st.nextToken());
-			num2 = Integer.parseInt(st.nextToken());
+		for (int i = 0; i < t; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			int a = Integer.parseInt(st.nextToken());
+			int b = Integer.parseInt(st.nextToken());
 			
-			sb.append(num1*num2/gcd(num1, num2)+"\n");
-			
+			sb.append(lcm(a, b)).append("\n");
 		}
-		bw.write(sb+"");
 		
+		System.out.println(sb.toString());
 		br.close();
-		bw.flush();
-		bw.close();
 	}
-    
-	public static int gcd(int a, int b) {
-		while(b != 0) {
-			int r = a%b;
-			a = b;
-			b = r;
+	
+	private static int gcd(int a, int b) {
+		if (b == 0) {
+			return a;
 		}
-		return a;
+		
+		return gcd(b, a % b);
+	}
+	
+	private static int lcm(int a, int b) {
+		return (a * b) / gcd(a, b);
 	}
 	
 }
