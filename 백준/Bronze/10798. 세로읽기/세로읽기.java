@@ -2,30 +2,29 @@ import java.io.*;
 
 public class Main {
 
-	public static void main(String[] args) throws IOException{
+	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
 		
-		String[] s = new String[5];
-		char[][] c1 = new char[5][15];
-		int max = 0;
+		char[][] ch = new char[5][15];
 		
-		for(int i = 0; i < 5; i++) {
-			s[i] = br.readLine(); //ABCDE
-			max = Math.max(max, s[i].length());
-			for(int j = 0; j < s[i].length(); j++) {
-				c1[i][j] = s[i].charAt(j); //s1[][] = A, B, C ,D, E 저장
+		for (int i = 0; i < 5; i++) {
+			String word = br.readLine();
+			for (int j = 0; j < word.length(); j++) {
+				ch[i][j] = word.charAt(j);
 			}
 		}
 		
-		for(int i = 0; i < max; i++) {
-			for(int j = 0; j < 5; j++) {
-				if(c1[j][i] != 0) { //문자가 있으면 출력, 0은 null을 의미함
-					System.out.print(c1[j][i]);
+		for (int i = 0; i < 15; i++) {
+			for (int j = 0; j < 5; j++) {
+				if (ch[j][i] != 0) { 
+					sb.append(ch[j][i]);
 				}
 			}
 		}
+		
+		System.out.println(sb.toString());
 		br.close();
-
 	}
-
+	
 }
