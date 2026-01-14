@@ -1,0 +1,14 @@
+-- 상품코드 별 매출액(판매가 * 판매량) 합계를 출력
+-- 매출액을 기준으로 내림차순 정렬
+-- 매출액이 같다면 상품코드를 기준으로 오름차순
+
+-- ORACLE
+SELECT
+    T1.PRODUCT_CODE,
+    SUM(T2.SALES_AMOUNT * T1.PRICE) AS SALES
+FROM PRODUCT T1
+JOIN OFFLINE_SALE T2
+ON T1.PRODUCT_ID = T2.PRODUCT_ID
+GROUP BY T1.PRODUCT_CODE
+ORDER BY SALES DESC, T1.PRODUCT_CODE ASC;
+    
